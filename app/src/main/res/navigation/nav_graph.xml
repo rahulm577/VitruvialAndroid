@@ -14,7 +14,28 @@
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_PatientListFragment"
+            app:destination="@id/PatientListFragment" />
+        <action
+            android:id="@+id/action_FirstFragment_to_AddRecordFragment"
+            app:destination="@id/AddRecordFragment" />
     </fragment>
+    
+    <fragment
+        android:id="@+id/AddRecordFragment"
+        android:name="com.example.vitruvial.AddRecordFragment"
+        android:label="Add New Record"
+        tools:layout="@layout/fragment_add_record">
+        
+        <action
+            android:id="@+id/action_AddRecordFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_AddRecordFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.vitruvial.SecondFragment"
@@ -24,5 +45,50 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_BillingFragment"
+            app:destination="@id/BillingFragment" />
+        <action
+            android:id="@+id/action_SecondFragment_to_AddRecordFragment"
+            app:destination="@id/AddRecordFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/BillingFragment"
+        android:name="com.example.vitruvial.BillingFragment"
+        android:label="@string/billing_fragment_label"
+        tools:layout="@layout/fragment_billing">
+        
+        <action
+            android:id="@+id/action_BillingFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_BillingFragment_to_SecondFragment" 
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/PatientListFragment"
+        android:name="com.example.vitruvial.PatientListFragment"
+        android:label="Patient Records"
+        tools:layout="@layout/fragment_patient_list">
+        
+        <action
+            android:id="@+id/action_PatientListFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+        <action
+            android:id="@+id/action_PatientListFragment_to_PatientDetailFragment"
+            app:destination="@id/PatientDetailFragment" />
+    </fragment>
+    
+    <fragment
+        android:id="@+id/PatientDetailFragment"
+        android:name="com.example.vitruvial.PatientDetailFragment"
+        android:label="Patient Details"
+        tools:layout="@layout/fragment_patient_detail">
+        
+        <action
+            android:id="@+id/action_PatientDetailFragment_to_PatientListFragment"
+            app:destination="@id/PatientListFragment" />
     </fragment>
 </navigation>

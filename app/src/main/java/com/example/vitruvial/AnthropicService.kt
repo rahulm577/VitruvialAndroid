@@ -48,21 +48,3 @@ data class ClaudeUsage(
     val input_tokens: Int,
     val output_tokens: Int
 )
-
-data class PatientInfo(
-    var firstName: String = "",
-    var lastName: String = "",
-    var dateOfBirth: String = "",
-    var address: String = "",
-    var phoneNumber: String = "",
-    var medicareNumber: String = "",
-    var healthcareFund: String = "",
-    var healthcareFundNumber: String = ""
-) {
-    override fun toString(): String {
-        return "PatientInfo(firstName='$firstName', lastName='$lastName', " +
-               "dateOfBirth='$dateOfBirth', address='$address', " +
-               "phoneNumber='$phoneNumber', medicareNumber='$medicareNumber', " +
-               "healthcareFund='$healthcareFund', healthcareFundNumber='$healthcareFundNumber')"
-    }
-} 

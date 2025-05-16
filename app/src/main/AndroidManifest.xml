@@ -5,14 +5,21 @@
     <!-- Camera permission -->
     <uses-permission android:name="android.permission.CAMERA" />
     <!-- Storage permissions for API 28 and below -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" 
+                     android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" 
-                     android:maxSdkVersion="28" />
+                     android:maxSdkVersion="29" />
+    <!-- For API 33+ (Android 13+) -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <!-- Internet permission for API calls -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <!-- For API 29+ we'll use scoped storage -->
+    
+    <!-- Declare that your app uses camera features -->
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
 
     <application
+        android:name=".VitruvialApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -25,7 +32,8 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.Vitruvial">
+            android:theme="@style/Theme.Vitruvial"
+            android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,7 +41,11 @@
             </intent-filter>
         </activity>
         
-
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="Settings"
+            android:parentActivityName=".MainActivity" />
         
         <!-- Provider for file sharing -->
         <provider

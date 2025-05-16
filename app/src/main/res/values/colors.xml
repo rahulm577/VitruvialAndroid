@@ -17,4 +17,6 @@
     <color name="button_primary_pressed">#3E3E42</color>
     <color name="card_background">#2D2D30</color>
     <color name="divider">#3E3E42</color>
+    <color name="emailedGreen">#4CAF50</color>
+    <color name="unemailedLight">#F5F5F5</color>
 </resources>

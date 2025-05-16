@@ -14,26 +14,30 @@ import com.example.vitruvial.databinding.FragmentFirstBinding
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        
+        // Reset any currently active patient
+        PatientService.resetCurrentPatient()
+        
+        // Add new record button
+        binding.buttonAddRecord.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_AddRecordFragment)
+        }
+        
+        // View records button
+        binding.buttonViewRecords.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_PatientListFragment)
         }
     }
 
