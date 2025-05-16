@@ -37,8 +37,8 @@ class AnthropicClient(private val context: Context) {
     }
     
     private fun getApiKey(): String {
-        // Get the API key from BuildConfig
-        return BuildConfig.CLAUDE_API_KEY
+        // Get the API key from RemoteConfigManager with BuildConfig fallback
+        return RemoteConfigManager.getClaudeApiKey()
     }
 
     suspend fun extractPatientInfo(text: String): PatientInfo {

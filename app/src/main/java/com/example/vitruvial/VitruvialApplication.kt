@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKey
 import com.example.vitruvial.database.AppDatabase
+import com.google.firebase.FirebaseApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -24,6 +25,14 @@ class VitruvialApplication : Application() {
         
         // Initialize SQLCipher
         SQLiteDatabase.loadLibs(this)
+        
+        // Initialize Firebase
+        FirebaseApp.initializeApp(this)
+        
+        // Fetch remote config
+        applicationScope.launch {
+            RemoteConfigManager.fetchAndActivate()
+        }
         
         // Initialize the database in the background
         applicationScope.launch {
