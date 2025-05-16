@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style for result text with high contrast and Helvetica font -->
+    <style name="TextAppearance.App.Result" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item> <!-- Android's closest equivalent to Helvetica -->
+        <item name="android:lineSpacingExtra">4dp</item>
+    </style>
+</resources> 

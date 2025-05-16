@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:animateLayoutChanges="true"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
+
+    <TextView
+        android:id="@+id/textViewImageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Image Preview"
+        android:textAppearance="@style/TextAppearance.App.Caption"
+        android:textColor="@color/accent_teal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/imageCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        android:stateListAnimator="@animator/card_state_list_anim"
+        android:foreground="?attr/selectableItemBackground"
+        app:layout_constraintBottom_toTopOf="@+id/guideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewImageTitle">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitCenter"
+            android:padding="4dp"
+            android:contentDescription="@string/captured_image" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/textViewActionsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Actions"
+        android:textAppearance="@style/TextAppearance.App.Caption"
+        android:textColor="@color/accent_teal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonCamera"
+        style="@style/Widget.App.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="2dp"
+        android:text="@string/take_photo"
+        app:icon="@android:drawable/ic_menu_camera"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/buttonGallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewActionsTitle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonGallery"
+        style="@style/Widget.App.Button.Secondary"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/select_from_gallery"
+        app:icon="@android:drawable/ic_menu_gallery"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconTint="@color/accent_blue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonCamera"
+        app:layout_constraintTop_toBottomOf="@+id/textViewActionsTitle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonProcess"
+        style="@style/Widget.App.Button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:elevation="2dp"
+        android:enabled="false"
+        app:backgroundTint="@color/accent_teal"
+        android:text="@string/process_image"
+        app:icon="@android:drawable/ic_menu_search"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCamera" />
+
+    <TextView
+        android:id="@+id/textViewResultsTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Patient Information (Editable)"
+        android:textAppearance="@style/TextAppearance.App.Caption"
+        android:textColor="@color/accent_teal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProcess" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/resultsCard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:stateListAnimator="@animator/card_state_list_anim"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/card_background"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewResultsTitle">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:fadingEdgeLength="24dp"
+            android:requiresFadingEdge="vertical"
+            android:scrollbarStyle="insideOverlay"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First Name -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/firstNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="First Name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editFirstName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Last Name -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/lastNameLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Last Name"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editLastName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- DOB -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/dobLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Date of Birth"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editDob"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="date" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Address -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/addressLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Address"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="textPostalAddress" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Phone Number -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/phoneNumberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Phone Number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editPhoneNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="phone" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Medicare Number -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/medicareLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Medicare Number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editMedicare"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Healthcare Fund -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/healthcareFundLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Healthcare Fund"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editHealthcareFund"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Healthcare Fund Number -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/healthcareFundNumberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:hint="Healthcare Fund Number"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editHealthcareFundNumber"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/white"
+                        android:inputType="number" />
+                </com.google.android.material.textfield.TextInputLayout>
+                
+                <!-- Save Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buttonSave"
+                    style="@style/Widget.App.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Save Patient Information"
+                    app:backgroundTint="@color/accent_blue"
+                    app:icon="@android:drawable/ic_menu_save"
+                    app:iconGravity="textStart" />
+                
+                <!-- Hidden TextView for old functionality -->
+                <TextView
+                    android:id="@+id/textViewResult"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                
+            </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

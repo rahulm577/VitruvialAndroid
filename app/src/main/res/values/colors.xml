@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- CursorAI-inspired theme colors -->
+    <color name="background_dark">#1E1E1E</color>
+    <color name="background_medium">#252526</color>
+    <color name="background_light">#333333</color>
+    <color name="text_primary">#E1E1E1</color>
+    <color name="text_secondary">#BBBBBB</color>
+    <color name="accent_blue">#007ACC</color>
+    <color name="accent_teal">#16C288</color>
+    <color name="accent_purple">#9580FF</color>
+    <color name="error_red">#F14C4C</color>
+    <color name="button_primary">#2D2D30</color>
+    <color name="button_primary_pressed">#3E3E42</color>
+    <color name="card_background">#2D2D30</color>
+    <color name="divider">#3E3E42</color>
+</resources>
