@@ -55,6 +55,12 @@ interface PatientDao {
     suspend fun deleteBillingCodesForPatient(patientId: String)
     
     /**
+     * Delete a specific billing code
+     */
+    @Query("DELETE FROM billing_codes WHERE patientId = :patientId AND code = :code AND date = :date")
+    suspend fun deleteBillingCode(patientId: String, code: String, date: Date)
+    
+    /**
      * Patient with all billing codes
      */
     @Transaction

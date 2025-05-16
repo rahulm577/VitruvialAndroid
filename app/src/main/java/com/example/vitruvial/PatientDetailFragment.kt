@@ -53,6 +53,29 @@ class PatientDetailFragment : Fragment() {
                 patient?.let { showEmailSelectionDialog(it) }
             }
         }
+        
+        // Set up delete patient buttons (both top and bottom)
+        setupDeletePatientButtons()
+    }
+    
+    private fun setupDeletePatientButtons() {
+        val deletePatientClickListener = View.OnClickListener {
+            patientId?.let { id ->
+                DeleteConfirmationDialog.show(
+                    requireContext(),
+                    "Delete Patient",
+                    "Are you sure you wish to delete this patient? This will delete all billing records associated with this patient and cannot be undone.",
+                    {
+                        // Delete patient and navigate back to list
+                        PatientService.deletePatient(id)
+                        findNavController().navigate(R.id.action_PatientDetailFragment_to_PatientListFragment)
+                    }
+                )
+            }
+        }
+        
+        // Set the listener on the delete patient button
+        binding.buttonDeletePatient.setOnClickListener(deletePatientClickListener)
     }
     
     private fun showEmailSelectionDialog(patient: PatientRecord) {
@@ -113,6 +136,22 @@ class PatientDetailFragment : Fragment() {
                         billingItemBinding.textviewBillingCode.text = "Billing Code: ${billingCode.code}"
                         billingItemBinding.textviewBillingDate.text = "Date: ${dateFormat.format(billingCode.date)}"
                         billingItemBinding.textviewReferringDoctor.text = "Referring Doctor: ${billingCode.referringDoctor.ifEmpty { "Not specified" }}"
+                        
+                        // Set up delete button for this billing code
+                        billingItemBinding.buttonDeleteBilling.setOnClickListener {
+                            DeleteConfirmationDialog.show(
+                                requireContext(),
+                                "Delete Billing Code",
+                                "Are you sure you wish to delete this billing code?",
+                                {
+                                    // Delete the billing code and refresh the UI
+                                    patientId?.let { patientId ->
+                                        PatientService.deleteBillingCode(patientId, billingCode)
+                                        loadPatientDetails() // Refresh the UI after deletion
+                                    }
+                                }
+                            )
+                        }
                         
                         // Check if this billing code has been emailed
                         if (billingCode.emailedDate != null && billingCode.emailedTo != null) {

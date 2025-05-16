@@ -270,4 +270,36 @@ object PatientService {
         // Return true only if there are billing codes and ALL have been emailed
         return billingCodes.isNotEmpty() && billingCodes.all { it.emailedDate != null }
     }
+    
+    /**
+     * Delete a billing code for a patient
+     */
+    fun deleteBillingCode(patientId: String, billingCode: BillingCode) {
+        // Delete from memory
+        patientRecords[patientId]?.billingCodes?.removeIf { 
+            it.code == billingCode.code && it.date == billingCode.date 
+        }
+        
+        // Delete from database
+        patientDao?.let { dao ->
+            serviceScope.launch {
+                dao.deleteBillingCode(patientId, billingCode.code, billingCode.date)
+            }
+        }
+    }
+    
+    /**
+     * Delete a patient and all associated billing codes
+     */
+    fun deletePatient(patientId: String) {
+        // Delete from memory
+        patientRecords.remove(patientId)
+        
+        // Delete from database
+        patientDao?.let { dao ->
+            serviceScope.launch {
+                dao.deletePatientWithBillingCodes(patientId)
+            }
+        }
+    }
 } 
